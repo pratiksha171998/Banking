@@ -1,10 +1,10 @@
 import React ,{Component } from 'react';
 import '../../../../resources/style/style.css'
 
-export default class Span extends Component {
+export default class AccountCard extends Component {
     render(){
         return(
-            <span className = {this.props.className} >{this.props.children}</span>
+           <div className="card-account">{this.props.children}</div>
         )
     }
 }

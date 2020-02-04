@@ -17,7 +17,7 @@ export default class AccountList extends Component {
         userData : [],
         isShowing : false,
         currentPage: 1,
-        todosPerPage: 3
+        todosPerPage: 2
 
     })
     
@@ -134,12 +134,12 @@ export default class AccountList extends Component {
         const renderPageNumbers = pageNumbers.map(number => {
          console.log(number,"Number")
           return (
-            <li className = "pagination"
+            <li className = "page-style"
               key={number}
               id={number}
               onClick={this.paginationClick}
             >
-          {number}  
+          {number}
            </li>
           );
         });
@@ -214,7 +214,7 @@ export default class AccountList extends Component {
                           
                         </tbody>
                       </table>
-                      <div id="page-numbers">
+                      <div  className = "pagination-btn">
                       {renderPageNumbers}
                     </div>
                       </form>

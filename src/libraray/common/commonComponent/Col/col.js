@@ -1,10 +1,10 @@
 import React ,{Component } from 'react';
 import '../../../../resources/style/style.css'
 
-export default class Span extends Component {
+export default class Col extends Component {
     render(){
         return(
-            <span className = {this.props.className} >{this.props.children}</span>
+           <div className="col-lg-6 col-md-6 col-sm-6">{this.props.children}</div>
         )
     }
 }

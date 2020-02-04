@@ -7,11 +7,14 @@ import InputField from '../../libraray/common/commonComponent/InputField/inputfi
 import loginStore from '../../libraray/common/Stores/loginStore';
 import SessionStore from '../../libraray/common/Stores/sessionStore'
 import * as SessionAction from '../../libraray/common/actions/sessionStorageAction'
+import Button from '../../libraray/common/commonComponent/Button/button';
 
 // const value =['1','2']
 // const option = [{value: 3,name : 'Select'},{value: 0,name : 'Deposit'},{value: 1,label : 'Withdrawal'}]
 // const optionForCardType = [{value: 3,name : 'Select'},{value: 0,name : 'VISA/Master Card'},{value: 1,label : 'Debit Card'}]
 
+const Depositbtn = "Deposit"
+const Withdrawalbtn = "Withdrawal"
 
 export default class Transaction extends Component{
     
@@ -139,10 +142,8 @@ export default class Transaction extends Component{
 
                 <div>
                     { this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
-
-                    <button className="open-modal-btn" onClick={this.openModalDeposit}>Deposit</button>
-                    <button className="open-modal-btn" onClick={this.openModalWithdrawal}>Withdrawal</button>
-
+                    <Button className="open-modal-btn" onClick={this.openModalDeposit} value = {Depositbtn}/>
+                    <Button className="open-modal-btn" onClick={this.openModalWithdrawal} value = {Withdrawalbtn} />
                     { this.state.isShowing && <Modal
                         className="modal"
                         show={this.state.isShowing}
@@ -150,15 +151,10 @@ export default class Transaction extends Component{
                         call =  {this.apiCall }>
                         {this.state.isCredit ? <span className = "color-alpha" >Deposit Amount</span>: <span className = "color-alpha" >Withdrawal Amount</span> }
                         <InputField pattern="[0-9]*" name = 'amount' placeholder="Amount" type = 'text' updateStateProp = {this.amountEvent} />
-                    
                     </Modal>}
                 </div>
 
-            
-
-                {/* <Button  value = {this.state.buttonWithdrawal}  /> */}
                 <form onSubmit = {(e) => e.preventDefault()}>
-                
                 <table className = 'tablespace'>
                         <thead>
                             <tr>
@@ -173,20 +169,15 @@ export default class Transaction extends Component{
                             {
                             userData && userData.map(({_id,amount,isCredit,balance},key) =>
                             <tr key ={_id}>
-                            
                             <td>{key+1}</td>
                             <td>{_id}</td>
                             <td>{amount}</td>
                             <td>{isCredit ? 'Deposit':'Withdrawal'}</td>
-                            <td>{balance}</td>
-                                
+                            <td>{balance}</td>  
                             </tr>
-                            )}
-                            
-                            
+                            )} 
                         </tbody>
                         </table>
-                    
                         </form>
                 </div>
             )

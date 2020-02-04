@@ -4,11 +4,16 @@ import * as apiUtil from '../../libraray/common/apiCall/apiUtilities'
 import InputField from '../../libraray/common/commonComponent/InputField/inputfield'
 import * as CreateAction from '../../libraray/common/actions/accountAction'
 import LoginStore from '../../libraray/common/Stores/loginStore'
+import Span from '../../libraray/common/commonComponent/span/span'
 import * as routingAuth from '../../libraray/common/routingService/routingAuthentication'
 import AccountStore from '../../libraray/common/Stores/accountStore'
 import Button from '../../libraray/common/commonComponent/Button/button';
 import SessionStore from '../../libraray/common/Stores/sessionStore'
+import AccountCard from '../../libraray/common/commonComponent/Account-Card/account-card'
 import * as SessionAction from '../../libraray/common/actions/sessionStorageAction'
+import Form from '../../libraray/common/commonComponent/Form/form'
+import Col from '../../libraray/common/commonComponent/Col/col'
+import Row from '../../libraray/common/commonComponent/Row/row'
 // import * as Validation from '../../libraray/common/Validation/validation'
 
 export default class CreateAccount extends Component{
@@ -145,110 +150,103 @@ export default class CreateAccount extends Component{
                 this.props.history.push('/login')
             }
             return(
-                <div>
+                
                   
-                <form style={{border: "none"}} onSubmit = {(e) => e.preventDefault()}>
-                <div className="container-fluid">
-                  <div className="card-account" >
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">First Name</span>
+                <Form onSubmit = {(e) => e.preventDefault()}>
+                  <AccountCard>
+                   <Row>
+                      <Col>
+                      <Span className="labelClass">First Name</Span>
                       <InputField type="text"  name="firstName" 
                       placeholder = 'First Name'
-                        updateStateProp = {this.createAccount}
-                        value = {this.state.account.firstName} required  />
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Last Name</span>
+                      updateStateProp = {this.createAccount}
+                      value = {this.state.account.firstName} required  />
+                      </Col>
+                      <Col>
+                      <Span className="labelClass">Last Name</Span>
                       <InputField type="text"  name="lastName" 
                       placeholder = 'Last Name'
-                        updateStateProp = {this.createAccount}
-                        value = {this.state.account.lastName}/>
-                      </div>
-                  
-                    </div>
+                      updateStateProp = {this.createAccount}
+                      value = {this.state.account.lastName}/>
+                       </Col>
+                      </Row>
 
-                      <div className="row">
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Age</span>
+                      <Row>
+                      <Col>
+                      <Span className="labelClass">Age</Span>
                       <InputField type="text"  name="age"  updateStateProp = {this.createAccount}
                       placeholder = 'Age'
                       value = {this.state.account.age}/>
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Email Id</span>
+                      </Col>
+                      <Col>
+                      <Span className="labelClass">Email Id</Span>
                       <InputField type="email"  name="emailId" 
                       placeholder = 'Email Id'
                       updateStateProp = {this.createAccount}
                       value = {this.state.account.emailId} />
-                      </div>
-                      </div>
+                      </Col>
+                      </Row>
 
-                      <div className="row">
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Contact Number</span>
+                      <Row>
+                      <Col>
+                      <Span className="labelClass">Contact Number</Span>
                       <InputField type="text"  name="mobileNumber" 
                       placeholder = 'Contact Number'
-                    value = {this.state.account.mobileNumber} 
-                    updateStateProp = {this.createAccount} required/>
-                      </div>
-
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Pan Card Number</span>
+                      value = {this.state.account.mobileNumber} 
+                      updateStateProp = {this.createAccount} required/>
+                      </Col>
+                      <Col>
+                      <Span className="labelClass">Pan Card Number</Span>
                       <InputField type="text"  name="panCardNo" 
                       placeholder = 'Pan Card Number'
                       required updateStateProp = {this.createAccount}
-                        value = {this.state.account.panCardNo} />
-                      </div>
-                    </div>
+                      value = {this.state.account.panCardNo} />
+                      </Col>
+                      </Row>
 
-                      <div className="row">
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Adhaar Card Number</span>
+                      <Row>
+                      <Col>
+                      <Span className="labelClass">Adhaar Card Number</Span>
                       <InputField type="text"  name="adharCardNumber"
                       placeholder = 'Adhaar Card Number' 
                       value = {this.state.account.adharCardNumber} 
                       updateStateProp = {this.createAccount}
                       required/>
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Nationality</span>
+                      </Col>
+                      <Col>
+                      <Span className="labelClass">Nationality</Span>
                       <InputField type="text"  name="religion" 
                       placeholder = 'Nationality' 
                       value = {this.state.account.religion} 
                       updateStateProp = {this.createAccount} required/>
-                      </div>
-                      </div>
-                      <div className="row">
-                    
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Balance</span>
+                      </Col>
+                      </Row>
+
+                      <Row>
+                      <Col>
+                      <Span className="labelClass">Balance</Span>
                       <InputField type="text"  name="balance" 
                       placeholder = 'Balance' 
                       updateStateProp = {this.createAccount}
                       value = {this.state.account.balance} 
-                        required/>
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-10">
-                      <span className="labelClass">Account Type</span>
+                      required/>
+                      </Col>
+                      <Col>
+                      <Span className="labelClass">Account Type</Span>
                       <select className="selectClass" name="accountType" 
-                    // disabled= {this.state.isReadOnly} 
-                    value = {this.state.account.accountType} 
-                    onChange = {this.createAccount} >
-                        <option value="1">Saving</option>
-                        <option value="0">Current</option>
+                      value = {this.state.account.accountType} 
+                      onChange = {this.createAccount} >
+                      <option value="1">Saving</option>
+                      <option value="0">Current</option>
                       </select>
-                      </div>
-                      </div>
-
-                    
+                      </Col>
+                      </Row>
                       <Button className = "button-class" value = {this.state.button} onClick ={this.onClick}/>
-                      
-                  </div>
-                </div>
-            </form>
+                      </AccountCard>
+               
+                </Form>
 
-                </div>
+                
             )
         }
     }

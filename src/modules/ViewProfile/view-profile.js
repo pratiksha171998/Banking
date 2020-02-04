@@ -5,6 +5,11 @@ import '../../resources/style/style.css'
 import * as routingAuth from '../../libraray/common/routingService/routingAuthentication'
 import * as apiUtil from '../../libraray/common/apiCall/apiUtilities'
 import Button from '../../libraray/common/commonComponent/Button/button';
+import Form from '../../libraray/common/commonComponent/Form/form'
+import Span from '../../libraray/common/commonComponent/span/span'
+import Col from '../../libraray/common/commonComponent/Col/col'
+import Row from '../../libraray/common/commonComponent/Row/row'
+import AccountCard from '../../libraray/common/commonComponent/Account-Card/account-card'
 
 const button = "Back"
 export default class ViewProfile extends Component{
@@ -67,104 +72,99 @@ export default class ViewProfile extends Component{
         }
         
             return(
-                <form style={{border: "none"}} onSubmit={this.onSubmit}>
-                <div className="container-fluid">
-                  <div className="card-account" >
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">First Name</span>
-                      <InputField type="text"  name="firstName" 
-                      value = {this.state.accountDetails.firstName}
-                        isReadOnly ={this.state.isReadOnly}
-                        
-                        required  />
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Last Name</span>
-                      <InputField type="text"  name="lastName" 
-                        value = {this.state.accountDetails.lastName}
-                        isReadOnly ={this.state.isReadOnly}
-                        required />
-                      </div>
-                  
-                    </div>
+                <Form  onSubmit={this.onSubmit}>
+                <AccountCard>
+                   <Row>
+                    <Col>
+                    <Span className="labelClass">First Name</Span>
+                    <InputField type="text"  name="firstName" 
+                    value = {this.state.accountDetails.firstName}
+                    isReadOnly ={this.state.isReadOnly}
+                    required  />
+                   </Col>
+                    <Col>
+                    <Span className="labelClass">Last Name</Span>
+                    <InputField type="text"  name="lastName" 
+                    value = {this.state.accountDetails.lastName}
+                    isReadOnly ={this.state.isReadOnly}
+                    required />
+                    </Col>
+                    </Row>
 
-                      <div className="row">
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Age</span>
-                      <InputField type="text"  name="age" 
-                        value = {this.state.accountDetails.age}
-                        isReadOnly ={this.state.isReadOnly}
-                        required/>
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Email Id</span>
-                      <InputField type="email"  name="emailId" 
-                      value = {this.state.accountDetails.emailId}
-                        isReadOnly ={this.state.isReadOnly}
-                        required/>
-                      </div>
-                      </div>
+                    <Row>
+                    <Col>
+                    <Span className="labelClass">Age</Span>
+                    <InputField type="text"  name="age" 
+                    value = {this.state.accountDetails.age}
+                    isReadOnly ={this.state.isReadOnly}
+                    required/>
+                    </Col>
+                    <Col>
+                    <Span className="labelClass">Email Id</Span>
+                    <InputField type="email"  name="emailId" 
+                    value = {this.state.accountDetails.emailId}
+                    isReadOnly ={this.state.isReadOnly}
+                    required/>
+                    </Col>
+                    </Row>
 
-                      <div className="row">
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Contact Number</span>
-                      <InputField type="text"  name="mobileNumber" 
-                      isReadOnly ={this.state.isReadOnly}
-                      
-                      value = {this.state.accountDetails.mobileNumber}
-                        required/>
-                      </div>
+                    <Row>
+                    <Col>
+                    <Span className="labelClass">Contact Number</Span>
+                    <InputField type="text"  name="mobileNumber" 
+                    isReadOnly ={this.state.isReadOnly}
+                    value = {this.state.accountDetails.mobileNumber}
+                    required/>
+                    </Col>
+                    <Col>
+                    <Span className="labelClass">Pan Card Number</Span>
+                    <InputField type="text"  name="panCardNo" 
+                    isReadOnly ={this.state.isReadOnly}
+                    value = {this.state.accountDetails.panCardNo}
+                    required />
+                    </Col>
+                    </Row>
 
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Pan Card Number</span>
-                      <InputField type="text"  name="panCardNo" 
-                      isReadOnly ={this.state.isReadOnly}
-                      value = {this.state.accountDetails.panCardNo}
-                        required />
-                      </div>
-                    </div>
+                    <Row>
+                    <Col>
+                    <Span className="labelClass">Adhaar Card Number</Span>
+                    <InputField type="text"  name="adharCardNumber" 
+                    isReadOnly ={this.state.isReadOnly}
+                    value = {this.state.accountDetails.adharCardNumber}
+                    required/>
+                    </Col>
+                    <Col>
+                    <Span className="labelClass">Nationality</Span>
+                    <InputField type="text"  name="religion" 
+                    value = {this.state.accountDetails.religion}
+                    isReadOnly ={this.state.isReadOnly}
+                    required/>
+                    </Col>
+                    </Row>
 
-                      <div className="row">
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Adhaar Card Number</span>
-                      <InputField type="text"  name="adharCardNumber" 
-                      isReadOnly ={this.state.isReadOnly}
-                      value = {this.state.accountDetails.adharCardNumber}
-                        required/>
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Nationality</span>
-                      <InputField type="text"  name="religion" 
-                      value = {this.state.accountDetails.religion}
-                        isReadOnly ={this.state.isReadOnly}
-                        required/>
-                      </div>
-                      </div>
+                    <Row>
+                    <Col>
+                    <Span className="labelClass">Balance</Span>
+                    <InputField type="text"  name="religion" 
+                    value = {this.state.accountDetails.balance}
+                    isReadOnly ={this.state.isReadOnly}
+                    required/>
+                    </Col>
+                    <Col>
+                    <Span className="labelClass">Account Type</Span>
+                    <select className="selectClass" name="accountType" 
+                    disabled= {this.state.isReadOnly}
+                    value = {this.state.accountDetails.accountType} >
+                    <option value="1">Saving</option>
+                    <option value="0">Current</option>
+                    </select>
+                    </Col>
+                    </Row>
 
-                      <div className="row">
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Balance</span>
-                      <InputField type="text"  name="religion" 
-                      value = {this.state.accountDetails.balance}
-                        isReadOnly ={this.state.isReadOnly}
-                        required/>
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-6">
-                      <span className="labelClass">Account Type</span>
-                      <select className="selectClass" name="accountType" 
-                      disabled= {this.state.isReadOnly}
-                      value = {this.state.accountDetails.accountType} >
-                        <option value="1">Saving</option>
-                        <option value="0">Current</option>
-                      </select>
-                      </div>
-                      
-                      </div>
                       <Button className = "button-class" value = {button}  onClick ={this.backClick}/>
-                  </div>
-                </div>
-            </form>
+                    </AccountCard>
+                
+            </Form>
           
             )
           

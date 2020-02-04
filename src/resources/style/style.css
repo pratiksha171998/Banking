@@ -321,7 +321,16 @@ tr:nth-child(even) {background-color: #f59595;}
         background-color: #1b5e20;
         float: right;
     }
-    
+    .page-style{
+        margin: 20px;
+        display: inline;
+        font-weight: 900;
+        
+    }
+    .pagination-btn {
+        text-align: right;  
+        cursor: pointer;
+    }
     .back-drop {
         background-color: rgba(48, 49, 48, 0.42);
         height: 100%;
@@ -337,8 +346,10 @@ tr:nth-child(even) {background-color: #f59595;}
     }
 
     .pagination {
-        margin-top: 25px;
-        float: right;
+        display: inline;
+        
+       
+       
     }
     .pagination span {
       cursor: pointer;

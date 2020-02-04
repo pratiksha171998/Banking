@@ -9,26 +9,17 @@ import * as routingAuth from '../../routingService/routingAuthentication'
 
 export default class Dashboard extends Component{
 
-    constructor(){
-        super();
-        this.sessionSuccess = this.sessionSuccess.bind(this);
-    }
-    componentDidMount(){
-        if(!routingAuth.routingAuthForUser()){
-            SessionAction.sessionClearAction()
-            SessionStore.on("SESSION_SUCCESS",this.sessionSuccess)
-            console.log("++++++INSIDE ACOOUNT LIST")
-            this.props.history.push('/login')
-          }
-    }
-    sessionSuccess(){
-        console.log("==========SIDENAV")
-    }
+    // constructor(props){
+    //     super(props);
+    //     this.sessionSuccess = this.sessionSuccess.bind(this);
+    // }
+    // sessionSuccess(){
+    //     console.log("==========SIDENAV")
+    // }
 
     render(){
-
         if(!LoginStore.isLoggedIn()){
-            this.props.history.pus("/login")
+            this.props.history.push("/login")
         }
         console.log("HELLO SIDENAV")
         return(
