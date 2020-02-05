@@ -1,12 +1,12 @@
 import dispatcher from "../Dispatcher";
 import * as apiUtil from '../apiCall/apiUtilities' 
 
-export const LOGOUT_APP_ACTIONS = {
+ const LOGOUT_APP_ACTIONS = {
     LOGOUT_SUCCESS_DATA : 'logout',
     LOGOUT_ERROR_DATA : 'error'  
 };
 
-export function logout(data){
+ function logout(data){
     let logoutdata = {
         access_token : data
     }
@@ -25,3 +25,5 @@ export function logout(data){
     })
     
 }
+
+export {logout, LOGOUT_APP_ACTIONS}

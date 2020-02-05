@@ -55,20 +55,20 @@ export default class Signup extends Component{
                 <div>
                     Name
                 </div>
-                <InputField  name = 'username' type = 'text' updateStateProp = {this.signupEvent} />
+                <InputField  name = 'username' type = 'text' onChange = {this.signupEvent} />
                 <div>
                     Address
                 </div>
                 {/* <input type = 'text' name = "address"  onChange={this.signupEvent}></input> */}
-                <InputField name = 'address'  type = 'text' updateStateProp = {this.signupEvent}/>
+                <InputField name = 'address'  type = 'text' onChange = {this.signupEvent}/>
                 <div>
                     Email
                 </div>
-                <InputField  name = 'email' type = 'text' updateStateProp = {this.signupEvent}/>
+                <InputField  name = 'email' type = 'text' onChange = {this.signupEvent}/>
                 <div>
                     Password
                 </div>
-                <InputField name = 'password'  type = 'password' updateStateProp = {this.signupEvent} />
+                <InputField name = 'password'  type = 'password' updonChangeateStateProp = {this.signupEvent} />
 
                 <div>
                     <Button  value = {button} onClick ={this.signupSubmit} />

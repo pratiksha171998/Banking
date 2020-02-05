@@ -2,7 +2,7 @@ import dispatcher from "../Dispatcher";
 import {EventEmitter} from "events";
 import * as  SessionAction from '../actions/sessionStorageAction'
 
-
+let {SESSION_SUCCESS_DATA,SESSION_ERROR_DATA} = SessionAction.Session_APP_ACTIONS
 class SessionStore extends EventEmitter{
 
     constructor() {
@@ -10,15 +10,15 @@ class SessionStore extends EventEmitter{
         this.sessionData = "";
     }
 
-     handleActions(action){
+    handleActions(action){
         switch(action.type){
-            case SessionAction.Session_APP_ACTIONS.SESSION_SUCCESS_DATA :{
+            case SESSION_SUCCESS_DATA :{
                 this.sessionData = action.value;
                 console.log(this.sessionData,"ENTERED DATA")
                 this.emit("SESSION_SUCCESS");
                 break;
             }
-            case SessionAction.Session_APP_ACTIONS.SESSION_ERROR_DATA :{
+            case SESSION_ERROR_DATA :{
                 this.emit("SESSION_ERROR");
                 break;
             }
@@ -26,16 +26,13 @@ class SessionStore extends EventEmitter{
 
             }
         }
-    }
+    };
 
     routingAuthForUser(){
-    let token = sessionStorage.getItem('token')
-    let isAdmin = sessionStorage.getItem('isAdmin')
-    // isAdmin = window.atob(isAdmin);
-
-    return !!(token && isAdmin === 'true')
- 
-};
+        let token = sessionStorage.getItem('token')
+        let isAdmin = sessionStorage.getItem('isAdmin')
+        return !!(token && isAdmin === 'true')
+    };
     
 }
 

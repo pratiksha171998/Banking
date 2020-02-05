@@ -3,8 +3,9 @@ import '../../../../resources/style/style.css'
 
 export default class Container extends Component {
     render(){
+        let {children} = this.props
         return(
-           <div className="container" >{this.props.children}</div>
+           <div className="container" >{children}</div>
         )
     }
 }

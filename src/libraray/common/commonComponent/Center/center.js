@@ -1,10 +1,13 @@
 import React ,{Component } from 'react';
 import '../../../../resources/style/style.css'
 
-export default class Center extends Component {
+ class Center extends Component {
     render(){
+        let {children} = this.props
         return(
-           <div className="center">{this.props.children}</div>
+           <div className="center">{children}</div>
         )
     }
 }
+
+export default Center

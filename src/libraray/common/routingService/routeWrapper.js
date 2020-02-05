@@ -3,13 +3,13 @@ import Sidenav from '../commonComponent/sidenav/sidenav'
 
 
 export default class RouteWrapper extends Component{    
-
-
+    
     render(){  
+        let {children} = this.props
         return(
         <div>
-        <Sidenav/> 
-        {this.props.children}
+            <Sidenav/> 
+            {children}
         </div>
         )
         

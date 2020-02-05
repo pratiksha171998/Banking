@@ -1,12 +1,12 @@
 import dispatcher from "../Dispatcher";
 import * as apiUtil from '../apiCall/apiUtilities' 
 
-export const LOGIN_APP_ACTIONS = {
+const LOGIN_APP_ACTIONS = {
     LOGIN_SUCCESS_DATA : 'login',
     LOGIN_ERROR_DATA : 'error'  
 };
 
-export function loginDataAction(data){
+function loginDataAction(data){
     apiUtil.apiUtilPost(`/commonlogin`,data)
     .then((res) => {
         console.log(res.data.isAdmin,"=====")
@@ -25,10 +25,12 @@ export function loginDataAction(data){
 }
 
 
- function setToken(access_token, isAdmin) {
+function setToken(access_token, isAdmin) {
     sessionStorage.setItem('token', access_token);
     // isAdmin=  window.btoa(isAdmin)
     sessionStorage.setItem('isAdmin', isAdmin);
 
     return
   }
+  
+export {loginDataAction, LOGIN_APP_ACTIONS}

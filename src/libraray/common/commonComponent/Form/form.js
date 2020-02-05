@@ -3,8 +3,9 @@ import '../../../../resources/style/style.css'
 
 export default class Form extends Component {
     render(){
+        let {children,onSubmit} = this.props
         return(
-           <form onSubmit = {this.props.onSubmit}>{this.props.children}</form>
+           <form onSubmit = {onSubmit}>{children}</form>
         )
     }
 }

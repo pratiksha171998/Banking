@@ -16,14 +16,13 @@ export default class App extends Component {
 
   constructor(){
     super()
-    this.state={
-      button : ''
-    }
+    this.Home = this.Home.bind(this);
+    this.Admin = this.Admin.bind(this);
   }
 
 
   viewbutton
-  Home=()=>{
+  Home() {
     
     if(!sessionStorage.getItem("token")){
       this.button = <Route path='/login' component={Login} />
@@ -40,17 +39,17 @@ export default class App extends Component {
               </Switch>
   )}
 
-  Admin=()=>{
+  Admin(){
   return(
-   <BrowserRouter>
-    <RouteWrapper>
-    <Switch>
-    <Route path = '/account-list' component = {AccountList}/>
-    <Route  path='/create-account' component={CreateAccount} />
-    <Route  path='/edit-account/:id' component={CreateAccount} />
-    </Switch>
-    </RouteWrapper>
-    </BrowserRouter>
+      <BrowserRouter>
+        <RouteWrapper>
+          <Switch>
+                <Route path = '/account-list' component = {AccountList}/>
+                <Route  path='/create-account' component={CreateAccount} />
+                <Route  path='/edit-account/:id' component={CreateAccount} />
+          </Switch>
+        </RouteWrapper>
+      </BrowserRouter>
   )
 }
   
@@ -58,14 +57,11 @@ export default class App extends Component {
     return (
       <div>
         <BrowserRouter>
-        <Header/>
-                
+        <Header/>   
         <Route exact path='/' children={this.Home}/>
                 <Switch>
-                
-                <Route path='/transaction' component={Transaction} />
-                <Route path='/account-list' children={this.Admin}/>
-                
+                    <Route path='/transaction' component={Transaction} />
+                    <Route path='/account-list' children={this.Admin}/>
                </Switch>
           </BrowserRouter>
       </div>

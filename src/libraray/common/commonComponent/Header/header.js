@@ -6,8 +6,7 @@ import LogoutStore from '../../Stores/logoutStore'
 import SessionStore from '../../Stores/sessionStore'
 
 
-
-export default class Header extends Component{
+class Header extends Component{
  
     constructor(){
         super();
@@ -18,8 +17,6 @@ export default class Header extends Component{
         this.loginSuccess = this.loginSuccess.bind(this);
         this.logoutSuccess = this.logoutSuccess.bind(this);
         this.sessionSuccess = this.sessionSuccess.bind(this);
-        // this.loginsuccess = this.loginsuccess.bind(this);
-        // this.logoutsuccess = this.logoutsuccess.bind(this);
     }
 
 
@@ -27,63 +24,56 @@ export default class Header extends Component{
         LoginStore.on("Login_SUCCESS", this.loginSuccess);
         LogoutStore.on("Logout_SUCCESS", this.logoutSuccess);
         SessionStore.on('SESSION_SUCCESS',this.sessionSuccess)
-
     }
+
     componentDidUpdate(){
         LoginStore.on("Login_SUCCESS", this.loginSuccess);
         LogoutStore.on("Logout_SUCCESS", this.logoutSuccess);
         SessionStore.on('SESSION_SUCCESS',this.sessionSuccess)
     }
+
     componentWillUnmount(){
         LoginStore.removeAllListeners("Login_SUCCESS", this.loginSuccess);
         LogoutStore.removeAllListeners("Logout_SUCCESS", this.logoutSuccess);
         SessionStore.removeAllListeners('SESSION_SUCCESS',this.sessionSuccess)
     }
+
     sessionSuccess(){
         this.setState({Logout : true}); 
     }
+
     loginSuccess(){
        
         let {isAdmin = false} = LoginStore.getLoginData();
-        console.log("IsAdmin",isAdmin)
          this.setState({isAdmin}); 
     }
+
     logoutSuccess(){
-       
         let {isLogout = true} = LogoutStore.getLogoutData();
-        console.log("isLogout",isLogout)
-         this.setState({isLogout}); 
+        this.setState({isLogout}); 
     }
 
 
     render(){
-        let button,
-         viewbutton,
-        
+        let button,viewbutton,
          {isAdmin,isLogout} = this.state;
-         console.log(isLogout, "render Logout");
-         console.log(isAdmin, "render isAdmin");
-         console.log("======HEADER")
-
         if(sessionStorage.getItem("token")){
-            
             button = <Link to = "/logout"  >Logout</Link>
-             viewbutton = <Link to ="/view-profile">View Profile</Link>
+            viewbutton = <Link to ="/view-profile">View Profile</Link>
         }else if(!sessionStorage.getItem("token")){
-            button = <Link to = "/login"  >Login</Link>
+            button = <div> <Link to = "/login"  >Login</Link>
+                     <Link to = "/" >Contact</Link> </div>
         }
-        console.log("IF-ELSE ")
         return(
                 <div className="header">
-                 <Link to = "/" className="logo">World Bank</Link>
-                 <div className="header-right">
-                 { !isAdmin && viewbutton}
-                 { isLogout && button}
-                 <Link to = "/" >Contact</Link> 
-                </div>
-             
+                    <Link to = "/" className="logo">World Bank</Link>
+                    <div className="header-right">
+                        { !isAdmin && viewbutton}
+                        { isLogout && button}
+                    </div>
                 </div>
                 
         )
     }
 }
+export default Header

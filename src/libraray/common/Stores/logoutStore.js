@@ -2,31 +2,31 @@ import dispatcher from "../Dispatcher";
 import {EventEmitter} from "events";
 import * as  LogoutAction from '../actions/logoutAction'
 
-
+let {LOGOUT_SUCCESS_DATA,LOGOUT_ERROR_DATA } = LogoutAction.LOGOUT_APP_ACTIONS
 class LogoutStore extends EventEmitter{
 
     constructor() {
         super();
         this.enteredData = "";
     }
-     handleActions(action){
+
+    handleActions(action){
         console.log(action, "Action")
         switch(action.type){
-            case LogoutAction.LOGOUT_APP_ACTIONS.LOGOUT_SUCCESS_DATA :{
+            case LOGOUT_SUCCESS_DATA :{
                 this.enteredData = action.value;
                 console.log(this.enteredData,"ENTERED DATA")
                 this.emit("Logout_SUCCESS");
                 break;
             }
-            case LogoutAction.LOGOUT_APP_ACTIONS.LOGOUT_ERROR_DATA :{
+            case LOGOUT_ERROR_DATA :{
                 this.emit("Logout_ERROR");
                 break;
             }
-            default : {
-
-            }
+            default : { }
         }
     }
+    
     getLogoutData() {
         return this.enteredData;  
     }

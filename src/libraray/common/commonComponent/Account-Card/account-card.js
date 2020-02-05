@@ -1,10 +1,13 @@
 import React ,{Component } from 'react';
 import '../../../../resources/style/style.css'
 
-export default class AccountCard extends Component {
+class AccountCard extends Component {
     render(){
+        let {children} = this.props
         return(
-           <div className="card-account">{this.props.children}</div>
+           <div className="card-account">{children}</div>
         )
     }
 }
+
+export default AccountCard 

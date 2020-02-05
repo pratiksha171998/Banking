@@ -1,25 +1,23 @@
 import React from 'react';
-
+import Button from '../../commonComponent/Button/button'
 import '../../../../resources/style/style.css';
 
 const Modal = (props) => {
-
+    let {children,show,close,call} = props
     return (
         <div>
             <div className="modal-wrapper"
-                style={{
-                    transform: props.show ? 'translateY(0vh)' : 'translateY(-100vh)',
-                    opacity: props.show ? '1' : '0'
-                }}>
-                <div className="modal-body">
-                  
-                        {props.children}
-                   
-                </div>
-                <div >
-                    <button className="btn-cancel" onClick={props.close}>CLOSE</button>
-                    <button className="btn-continue"  onClick={props.call}>CONTINUE</button>
-                </div>
+                    style={{
+                        transform: show ? 'translateY(0vh)' : 'translateY(-100vh)',
+                        opacity: show ? '1' : '0'
+                    }}>
+                    <div className="modal-body">
+                            {children}
+                    </div>
+                    <div>
+                        <Button className="btn-cancel" onClick={close} value = "CLOSE" />
+                        <Button className="btn-continue"  onClick={call} value = "CONTINUE" />
+                    </div>
             </div>
         </div>
     )
