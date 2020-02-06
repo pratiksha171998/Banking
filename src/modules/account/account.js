@@ -60,7 +60,7 @@ class CreateAccount extends Component{
 
   conditionForCreateEdit(){
     let {route} = this.props.location.state
-    let {id} = this.props.match.params.id
+    let {id} = this.props.match.params
     if(route){
       this.currentURL = route
     }

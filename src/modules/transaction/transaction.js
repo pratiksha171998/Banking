@@ -14,9 +14,15 @@ import Button from '../../libraray/common/commonComponent/Button/button';
 // const optionForCardType = [{value: 3,name : 'Select'},{value: 0,name : 'VISA/Master Card'},{value: 1,label : 'Debit Card'}]
 
 const Depositbtn = "Deposit",
-      Withdrawalbtn = "Withdrawal"
-      ,userHeader = [
-        "S.No","Transaction Id","Transaction Amount","Credit/Debit","Total Balance"
+      Withdrawalbtn = "Withdrawal",
+      userHeader = [
+        {name : "S.No", id : "_id"},
+        {name: "Transaction Id",id : '_id'},
+        {name: "Transaction Amount",id : 'amount'},
+        {name : "Credit/Debit",id : 'isCredit', renderer : (item,colData) => {
+            return item.isCredit ? 'Credit' : 'Debit'
+            }},
+        {name : "Total Balance",id : 'balance'}
     ]
 
 class Transaction extends Component{
@@ -41,6 +47,26 @@ class Transaction extends Component{
     }
 
 
+
+
+    // const renderTableBody = currentDataSource.map(
+    //     (item,index1) => {
+    //     return ( <tr key={item._id}>
+    //     {tableColumns && tableColumns.map(
+    //     (colData,index) => {
+    //     let value = "";
+    //     if(colData.renderer && typeof colData.renderer === "function"){
+    //     value = colData.renderer(item, colData);
+    //     }
+    //     else{
+    //     value = item[colData.id]
+    //     }
+    //     return !index ? <td key={index}>{startingIndex+index1}</td>
+    //     : <td key={index}>{value}</td>
+    //     }
+    //     )}
+    //     </tr>
+    //     )});
 
     componentDidMount() {
         SessionStore.on("SESSION_SUCCESS",this.sessionSuccess)
@@ -131,14 +157,40 @@ class Transaction extends Component{
         this.setState({amount : value})
     }
     
-    renderTableHeader() {
-        // let header = Object.keys(this.state.students[0])
+    renderTableHeader() 
+    {
         return userHeader.map((key, index) => {
-           return <th key={index}>{key.toUpperCase()}</th>
+            
+          return <th key={index} >{key.name}</th>
         })
      }
 
 
+
+     renderTableData() {
+        return(
+            this.state.userData.map((item,index) => {
+                console.log("fghjkl",item)
+                return (
+                <tr key ={item._id}>
+                {
+                  userHeader.map((colData,index1) =>{
+                      console.log(item[colData.id])
+                      let value = ''
+                    if(colData.renderer && typeof colData.renderer === "function"){
+                    value = colData.renderer(item, colData);}
+                    else{
+                        value = item[colData.id]
+                    }
+                     return  <td key={index1} >{value}</td>
+                  })
+                  }
+                  </tr>
+                  )
+            })
+        ) 
+     }
+     
     render(){
             if(!loginStore.isLoggedIn()){
                 this.props.history.push('/login')
@@ -146,10 +198,10 @@ class Transaction extends Component{
             const container = document.createElement("div");
             document.body.appendChild(container);
             let {userData = []}= this.state;
+            console.log(userData,"UserData")
 
-           
-
-            console.log(this.renderTableHeader(),"d")
+            console.log(this.renderTableHeader(),"dekho")
+            console.log(this.renderTableData(),"table")
 
 
 
@@ -169,7 +221,7 @@ class Transaction extends Component{
                                 close={this.closeModalHandler}
                                 call =  {this.apiCall }>
                                 {this.state.isCredit ? <span className = "color-alpha" >Deposit Amount</span>: <span className = "color-alpha" >Withdrawal Amount</span> }
-                                <InputField pattern="[0-9]*" name = 'amount' placeholder="Amount" type = 'text' onChange = {this.amountEvent} />
+                                <InputField name = 'amount' placeholder="Amount" type = 'text' onChange = {this.amountEvent} />
                             </Modal>
                         }
                     </div>
@@ -178,24 +230,13 @@ class Transaction extends Component{
                         <table className = 'tablespace'>
                                 <thead>
                                     <tr>
-                                    <th>S.No</th>
-                                    <th>Transaction Id</th>
-                                    <th>Transaction Amount</th>
-                                    <th>Credit/Debit</th>
-                                    <th>Total Balance</th>
-                                    </tr>
+                               { this.renderTableHeader()}
+                               </tr>
+                                    
                                 </thead>
                                 <tbody>
-                                    {
-                                    userData && userData.map(({_id,amount,isCredit,balance},key) =>
-                                    <tr key ={_id}>
-                                    <td>{key+1}</td>
-                                    <td>{_id}</td>
-                                    <td>{amount}</td>
-                                    <td>{isCredit ? 'Deposit':'Withdrawal'}</td>
-                                    <td>{balance}</td>  
-                                    </tr>
-                                    )} 
+                                    {this.renderTableData() }
+                                    
                                 </tbody>
                         </table>
                     </form>
